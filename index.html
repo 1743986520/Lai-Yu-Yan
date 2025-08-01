@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
         }
         
         :root {
@@ -20,12 +20,13 @@
             --dark: #4B0082;
             --accent: #FF69B4;
             --facebook: #4267B2;
+            --background: linear-gradient(135deg, #f9f7ff 0%, #f0edfc 100%);
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f4 100%);
-            color: #333;
-            line-height: 1.6;
+            background: var(--background);
+            color: #444;
+            line-height: 1.7;
             padding: 20px;
             min-height: 100vh;
         }
@@ -38,14 +39,20 @@
         
         header {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             margin-bottom: 30px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 18px;
             color: white;
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2);
+            box-shadow: 0 12px 25px rgba(138, 43, 226, 0.25);
             position: relative;
             overflow: hidden;
+            animation: headerFade 1.2s ease-out;
+        }
+        
+        @keyframes headerFade {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         header::before {
@@ -55,200 +62,313 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
             transform: rotate(30deg);
         }
         
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            margin: 0 auto 20px;
-            background: linear-gradient(45deg, var(--accent), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
+            border: 6px solid rgba(255, 255, 255, 0.35);
+            margin: 0 auto 25px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            animation: profileScale 1s ease-out;
+        }
+        
+        @keyframes profileScale {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
         
         h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            font-weight: 600;
         }
         
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 600px;
+            font-size: 1.3rem;
+            opacity: 0.92;
+            max-width: 650px;
             margin: 0 auto;
+            font-weight: 300;
         }
         
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 35px;
+            margin-bottom: 45px;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             .main-content {
                 grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 3rem;
             }
         }
         
         .card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 18px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+            transition: all 0.4s ease;
+            animation: cardAppear 0.8s ease-out;
+            animation-fill-mode: backwards;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         
         .card h2 {
             color: var(--primary);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+        }
+        
+        .card h2 i {
+            margin-right: 14px;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.05rem;
             display: flex;
             align-items: center;
         }
         
-        .card h2 i {
-            margin-right: 10px;
-        }
-        
-        .info-item {
+        .info-content {
             display: flex;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            flex-direction: column;
+            gap: 10px;
         }
         
-        .info-label {
-            font-weight: bold;
-            min-width: 120px;
-            color: var(--dark);
+        .school {
+            background: linear-gradient(to right, #f9f4ff, #fff);
+            padding: 10px 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 5px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
         }
         
         .fb-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             background: var(--facebook);
             color: white !important;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(66, 103, 178, 0.3);
+            box-shadow: 0 5px 15px rgba(66, 103, 178, 0.3);
             margin-top: 5px;
+            font-size: 1.1rem;
         }
         
         .fb-btn:hover {
             background: #365899;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(66, 103, 178, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(66, 103, 178, 0.4);
         }
         
         .fb-btn i {
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 1.4rem;
         }
         
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         
         .photo {
-            height: 250px;
-            border-radius: 10px;
+            height: 220px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
             position: relative;
+            transition: all 0.4s ease;
         }
         
-        .photo::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
-        }
-        
-        .photo:hover::before {
-            opacity: 0;
+        .photo:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
         
         .photo:hover img {
             transform: scale(1.1);
         }
         
+        .photo::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.15));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .photo:hover::after {
+            opacity: 1;
+        }
+        
         .experience {
-            background: linear-gradient(to bottom right, #f8f4ff, #f0e8ff);
-            border-left: 5px solid var(--accent);
+            background: linear-gradient(to bottom right, #fcf8ff, #f5eeff);
+            border-left: 6px solid var(--accent);
+            grid-column: 1 / -1;
         }
         
         .experience-content {
-            padding: 15px;
+            padding: 25px;
             background: white;
-            border-radius: 10px;
-            font-style: italic;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.06);
             position: relative;
+            border: 1px solid #f0e6ff;
         }
         
         .experience-content::before {
             content: """;
             position: absolute;
-            top: -30px;
-            left: 10px;
-            font-size: 80px;
+            top: -45px;
+            left: 15px;
+            font-size: 120px;
             color: var(--light);
             font-family: Georgia, serif;
+            opacity: 0.7;
+        }
+        
+        .birthday-container {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(to right, #fff0f8, #fff);
+            padding: 12px 20px;
+            border-radius: 30px;
+            margin-top: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+        }
+        
+        .birthday-icon {
+            color: var(--accent);
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+        
+        .birthday-text {
+            font-weight: 500;
+            font-size: 1.1rem;
         }
         
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 35px 20px 25px;
             color: var(--dark);
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            opacity: 0.85;
+            border-top: 1px solid rgba(138, 43, 226, 0.1);
+            margin-top: 20px;
         }
         
-        .birthday {
-            display: inline-flex;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
             align-items: center;
-            background: linear-gradient(to right, #ffebf3, #fff);
-            padding: 8px 15px;
-            border-radius: 30px;
-            margin-top: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
         
-        .birthday i {
-            color: var(--accent);
-            margin-right: 8px;
-            font-size: 1.2rem;
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
+        }
+        
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo {
+                height: 260px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .card {
+                padding: 25px;
+            }
         }
     </style>
 </head>
@@ -256,7 +376,7 @@
     <div class="container">
         <header>
             <div class="profile-pic">
-                <i class="fas fa-user"></i>
+                <img src="0.jpg" alt="賴瑀嫣的头像">
             </div>
             <h1>賴瑀嫣</h1>
             <p class="subtitle">个人简介与经历分享</p>
@@ -265,34 +385,32 @@
         <div class="main-content">
             <div class="card">
                 <h2><i class="fas fa-user-circle"></i> 个人信息</h2>
-                <div class="info-item">
-                    <span class="info-label">姓名：</span>
-                    <span>賴瑀嫣</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">性别：</span>
-                    <span>女</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Facebook：</span>
-                    <div>
+                <div class="info-grid">
+                    <div class="info-label">姓名：</div>
+                    <div class="info-content">賴瑀嫣</div>
+                    
+                    <div class="info-label">性别：</div>
+                    <div class="info-content">女</div>
+                    
+                    <div class="info-label">Facebook：</div>
+                    <div class="info-content">
                         <a href="https://www.facebook.com/lai.yu.yan.123981?mibextid=kFxxJD" class="fb-btn" target="_blank">
-                            <i class="fab fa-facebook-f"></i> FB
+                            <i class="fab fa-facebook-f"></i> Facebook
                         </a>
                     </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">教育经历：</span>
-                    <div>
-                        <p>日南國小</p>
-                        <p>順天國中</p>
+                    
+                    <div class="info-label">教育经历：</div>
+                    <div class="info-content">
+                        <div class="school">日南國小</div>
+                        <div class="school">順天國中</div>
                     </div>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">生日：</span>
-                    <div class="birthday">
-                        <i class="fas fa-birthday-cake"></i>
-                        <span>2000年12月5日</span>
+                    
+                    <div class="info-label">生日：</div>
+                    <div class="info-content">
+                        <div class="birthday-container">
+                            <i class="fas fa-birthday-cake birthday-icon"></i>
+                            <span class="birthday-text">2000年12月5日</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,16 +419,16 @@
                 <h2><i class="fas fa-images"></i> 照片展示</h2>
                 <div class="gallery">
                     <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="照片1">
+                        <img src="1.jpg" alt="賴瑀嫣的照片">
                     </div>
                     <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="照片2">
+                        <img src="2.jpg" alt="賴瑀嫣的照片">
                     </div>
                     <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="照片3">
+                        <img src="3.jpg" alt="賴瑀嫣的照片">
                     </div>
                     <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="照片4">
+                        <img src="4.jpg" alt="賴瑀嫣的照片">
                     </div>
                 </div>
             </div>
@@ -323,9 +441,36 @@
             </div>
         </div>
         
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-line"></i></a>
+            <a href="https://www.facebook.com/lai.yu.yan.123981?mibextid=kFxxJD" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        
         <footer>
             <p>© 2023 賴瑀嫣的个人网页 | 托管于GitHub Pages</p>
         </footer>
     </div>
+    
+    <script>
+        // 添加简单的滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'cardAppear 0.8s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
