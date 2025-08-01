@@ -27,13 +27,16 @@
             background: var(--background);
             color: #444;
             line-height: 1.7;
-            padding: 20px;
             min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .container {
             max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
             padding: 20px;
         }
         
@@ -227,33 +230,33 @@
             margin-top: 15px;
         }
         
-        .photo {
-            height: 220px;
+        .photo-container {
+            position: relative;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-            position: relative;
             transition: all 0.4s ease;
+            aspect-ratio: 4/5; /* 保持照片比例 */
         }
         
-        .photo:hover {
+        .photo-container:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .photo img {
+        .photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
+            display: block;
         }
         
-        .photo:hover img {
+        .photo-container:hover .photo {
             transform: scale(1.1);
         }
         
-        .photo::after {
-            content: "";
+        .photo-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -262,9 +265,14 @@
             background: linear-gradient(45deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.15));
             opacity: 0;
             transition: opacity 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
         }
         
-        .photo:hover::after {
+        .photo-container:hover .photo-overlay {
             opacity: 1;
         }
         
@@ -317,16 +325,6 @@
             font-size: 1.1rem;
         }
         
-        footer {
-            text-align: center;
-            padding: 35px 20px 25px;
-            color: var(--dark);
-            font-size: 1rem;
-            opacity: 0.85;
-            border-top: 1px solid rgba(138, 43, 226, 0.1);
-            margin-top: 20px;
-        }
-        
         .social-links {
             display: flex;
             justify-content: center;
@@ -353,13 +351,24 @@
             box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
         }
         
+        footer {
+            text-align: center;
+            padding: 25px 20px 15px;
+            color: var(--dark);
+            font-size: 1rem;
+            opacity: 0.85;
+            border-top: 1px solid rgba(138, 43, 226, 0.1);
+            margin-top: 20px;
+            width: 100%;
+        }
+        
         @media (max-width: 600px) {
             .gallery {
                 grid-template-columns: 1fr;
             }
             
-            .photo {
-                height: 260px;
+            .photo-container {
+                aspect-ratio: 3/4;
             }
             
             h1 {
@@ -369,14 +378,47 @@
             .card {
                 padding: 25px;
             }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+        
+        /* 水波动画 */
+        .water-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .water-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(30deg);
+            pointer-events: none;
+            animation: waterFlow 6s linear infinite;
+        }
+        
+        @keyframes waterFlow {
+            0% {
+                transform: rotate(30deg) translate(0, 0);
+            }
+            100% {
+                transform: rotate(30deg) translate(100px, 100px);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="water-effect">
             <div class="profile-pic">
-                <img src="0.jpg" alt="賴瑀嫣的头像">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的头像">
             </div>
             <h1>賴瑀嫣</h1>
             <p class="subtitle">个人简介与经历分享</p>
@@ -418,17 +460,29 @@
             <div class="card">
                 <h2><i class="fas fa-images"></i> 照片展示</h2>
                 <div class="gallery">
-                    <div class="photo">
-                        <img src="1.jpg" alt="賴瑀嫣的照片">
+                    <div class="photo-container">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
-                    <div class="photo">
-                        <img src="2.jpg" alt="賴瑀嫣的照片">
+                    <div class="photo-container">
+                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
-                    <div class="photo">
-                        <img src="3.jpg" alt="賴瑀嫣的照片">
+                    <div class="photo-container">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
-                    <div class="photo">
-                        <img src="4.jpg" alt="賴瑀嫣的照片">
+                    <div class="photo-container">
+                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -436,7 +490,7 @@
             <div class="card experience">
                 <h2><i class="fas fa-book-open"></i> 个人经历</h2>
                 <div class="experience-content">
-                    <p>曾无故殴打男同学，男同学向他询问缘由，他说只是心情不爽而已。</p>
+                    <p>曾无故扇男同学巴掌，男同学向他询问缘由，他说只是心情不爽而已，這對男同學心裡造成極大的打擊。</p>
                 </div>
             </div>
         </div>
@@ -449,7 +503,7 @@
         </div>
         
         <footer>
-            <p>© 2023 賴瑀嫣的个人网页 | 托管于GitHub Pages</p>
+            <!-- 已移除版权信息 -->
         </footer>
     </div>
     
@@ -457,6 +511,7 @@
         // 添加简单的滚动动画效果
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.card');
+            const header = document.querySelector('header');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -470,6 +525,15 @@
             cards.forEach(card => {
                 observer.observe(card);
             });
+            
+            // 添加水波效果
+            const waterEffect = document.querySelector('.water-effect');
+            setInterval(() => {
+                waterEffect.classList.toggle('water-effect');
+                setTimeout(() => {
+                    waterEffect.classList.toggle('water-effect');
+                }, 50);
+            }, 5000);
         });
     </script>
 </body>
