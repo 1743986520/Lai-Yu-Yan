@@ -423,7 +423,7 @@
                 transform: rotate(30deg) translate(100px, 100px);
             }
         }
-        
+
         .analytics-notice {
             position: fixed;
             bottom: 20px;
@@ -440,14 +440,14 @@
             opacity: 0;
             animation: fadeInUp 0.5s forwards 1s;
         }
-        
+
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         .analytics-notice button {
             background: var(--primary);
             color: white;
@@ -464,7 +464,8 @@
     <div class="container">
         <header class="water-effect">
             <div class="profile-pic">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的頭像">
+                <!-- 使用您的头像照片 -->
+                <img src="0.jpg" alt="賴瑀嫣的頭像">
             </div>
             <h1>賴瑀嫣</h1>
             <p class="subtitle">個人簡介與經歷分享</p>
@@ -497,6 +498,7 @@
                     <div class="info-content">
                         <div class="birthday-container">
                             <i class="fas fa-birthday-cake birthday-icon"></i>
+                            <!-- 使用您修改的生日日期 -->
                             <span class="birthday-text">2010年12月5日</span>
                         </div>
                     </div>
@@ -506,26 +508,27 @@
             <div class="card">
                 <h2><i class="fas fa-images"></i> 照片展示</h2>
                 <div class="gallery">
+                    <!-- 使用您的个人照片 -->
                     <div class="photo-container">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <img src="1.jpg" alt="賴瑀嫣的照片" class="photo">
                         <div class="photo-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     <div class="photo-container">
-                        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <img src="2.jpg" alt="賴瑀嫣的照片" class="photo">
                         <div class="photo-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     <div class="photo-container">
-                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <img src="3.jpg" alt="賴瑀嫣的照片" class="photo">
                         <div class="photo-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     <div class="photo-container">
-                        <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="賴瑀嫣的照片" class="photo">
+                        <img src="4.jpg" alt="賴瑀嫣的照片" class="photo">
                         <div class="photo-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
@@ -536,6 +539,7 @@
             <div class="card experience">
                 <h2><i class="fas fa-book-open"></i> 個人經歷</h2>
                 <div class="experience-content">
+                    <!-- 使用您修改的个人经历内容 -->
                     <p>曾無故扇男同學巴掌，男同學向他詢問緣由，她說只是心情不爽而已，這對男同學心裡造成極大的打擊。</p>
                 </div>
             </div>
@@ -552,7 +556,7 @@
             <!-- 已移除版權資訊 -->
         </footer>
     </div>
-    
+
     <div class="analytics-notice">
         本網站使用 Google Analytics 追蹤訪問數據
         <button onclick="this.parentElement.style.display='none'">知道了</button>
@@ -585,7 +589,7 @@
                     waterEffect.classList.toggle('water-effect');
                 }, 50);
             }, 5000);
-            
+
             // 发送自定义事件到Google Analytics
             gtag('event', 'page_view', {
                 'page_title': '賴瑀嫣個人網頁',
@@ -593,7 +597,7 @@
                 'page_path': window.location.pathname
             });
         });
-        
+
         // 社交链接点击事件追踪
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('click', function() {
@@ -605,7 +609,7 @@
                 });
             });
         });
-        
+
         // Facebook按钮点击事件追踪
         document.querySelector('.fb-btn').addEventListener('click', function() {
             gtag('event', 'facebook_click', {
